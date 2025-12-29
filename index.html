@@ -1,0 +1,63 @@
+
+
+[#assign
+    displayDepth = (configuration.sublevels?number + 1)
+    navItems = sourceObject.navItems
+    branchNavItems = sourceObject.branchNavItems
+    isEditMode = layoutMode == "edit"
+/]
+
+<div class="left-navigation ${isEditMode?then('edit-mode', '')}">
+    [#if navItems??]
+        <ul class="left-navigation-menu">
+            [#list navItems as navItem]
+                [#assign iconMapping = configuration.iconMapping?has_content?then(configuration.iconMapping?eval, {}) /]
+                [#assign itemIcon = iconMapping[navItem.getName()]!"" /]
+                
+                <li class="left-navigation-item ${navItem.isSelected()?then('active', '')}">
+                    [#if navItem.getChildren()?has_content]
+                        <div class="left-navigation-parent">
+                            <a class="left-navigation-link toggle-submenu" href="${navItem.getURL()}" role="button" aria-haspopup="true" aria-expanded="false">
+                             <span class="left-navigation-icon">
+															 <lfr-editable id="icon-${navItem.getName()}" type="image">
+																 <img src="...">
+															</lfr-editable>
+															</span>
+			
+                                <span class="left-navigation-text">${navItem.getName()}</span>
+                                <span class="left-navigation-arrow"><img class="arrow-icon" src="/o/wafacash-theme-css/icons/chevron-down.svg"></span>
+                            </a>
+                            <ul class="left-navigation-submenu">
+                                [#list navItem.getChildren() as childNavItem]
+                                    [#assign childIcon = iconMapping[childNavItem.getName()]!"" /]
+                                    <li class="left-navigation-subitem ${childNavItem.isSelected()?then('active', '')}">
+                                        <a class="left-navigation-sublink" href="${childNavItem.getURL()}">
+                                            [#if childIcon?has_content]
+                                                <span class="left-navigation-icon ${childIcon}"></span>
+                                            [/#if]
+																					<span class="left-navigation-icon">
+																					<lfr-editable id="icon-1-${childNavItem.getName()}" type="image">
+																						 <img src="...">
+																					</lfr-editable>
+																					</span>
+                                            <span class="left-navigation-text">${childNavItem.getName()}</span>
+                                        </a>
+                                    </li>
+                                [/#list]
+                            </ul>
+                        </div>
+                    [#else]
+                        <a class="left-navigation-link" href="${navItem.getURL()}">
+													<span class="left-navigation-icon">
+													<lfr-editable id="icon-2-${navItem.getName()}" type="image">
+															 <img src="...">
+													</lfr-editable>
+													</span>
+                            <span class="left-navigation-text">${navItem.getName()}</span>
+                        </a>
+                    [/#if]
+                </li>
+            [/#list]
+        </ul>
+    [/#if]
+</div>
