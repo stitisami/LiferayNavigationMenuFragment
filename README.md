@@ -43,14 +43,3 @@ Vérification de la présence des sous-niveaux (getChildren())
 Ajout dynamique de classes CSS (active, edit-mode)
 
 Gestion des icônes par nom de page
-
-🖼️ Gestion des icônes
-
-Chaque élément de menu peut contenir une icône éditable via :
-
-<lfr-editable id="icon-${navItem.getName()}" type="image">
-	<img src="...">
-</lfr-editable>
-
-
-Cela permet aux éditeurs de contenu de modifier les icônes directement depuis l’interface Liferay, sans code.
