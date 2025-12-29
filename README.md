@@ -1,7 +1,4 @@
 # LiferayNavigationMenuFragment
-Liferay Navigation Menu Fragment
-Left Navigation Fragment – Liferay DXP
-🧭 Description
 
 Ce fragment Liferay implémente un menu de navigation latéral dynamique basé sur la structure du site.
 Il supporte les niveaux hiérarchiques, les icônes configurables, et un mode édition spécifique pour le Fragment Editor.
